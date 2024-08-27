@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="wrapper">
+    <div class="logo">
+        <!-- <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt=""> -->
+    </div>
+
+    <!-- <div class="text-center mt-4 name">
+        User
+    </div> -->
+    <form class="p-3 mt-3" method="post"  action="/dashboard" enctype="multipart/form-data">
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="text" name="name" placeholder="name">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="text" name="community" placeholder="Community">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="text" name="village" placeholder="Village">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="text" name="discription" placeholder="discription">
+        </div>
+
+
+        <div class="form-field d-flex align-items-center">
+            <input type="file" name="file" id="file">
+        </div>
+        <div class="bu d-flex">
+        <button class="btn mt-3 pt-2"><h6>Add</h6></button>
+         &emsp14; &emsp14;
+        <a href="{{ url_for('show')}}" class="btn mt-3 pt-2 view"><h6>view</h6></a>
+        </div>
+        
+    </form>
+    
+</div>
+{% endblock %}

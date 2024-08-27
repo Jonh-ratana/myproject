@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+      <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-left: 30px;">
+        Admin
+      </a>
+      <ul class="dropdown-menu" style="padding-left: 20px; background-color:rgba(0, 0, 0, 0); ">
+        <!-- <li><a class="dropdown-item" href="#">Action</a></li> -->
+        <!-- <li><a class="dropdown-item" href="#">Another action</a></li> -->
+        <form method="POST" action="{{ url_for('logout') }}" >
+          <button class="btn m-2  view bg-danger text-white " type="submit" >Logout</button>
+      </form>
+        
+      </ul>
+    <form class="d-flex" role="search">
+      <!-- <input class="form-control me-2 w-100" type="search" placeholder="Search" name="query" aria-label="Search"> -->
+      <input class="form-control me-2 w-100" type="text" id="searchInput" placeholder="Search..." onkeyup="searchTable()">
+      <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+    </form>
+  </div>
+</nav>
+
+
+<div class="container">
+  <div class="my_btn" style="display: flex;">
+    <a href="{{ url_for('add') }}" class="btn m-2 pt-3 view bg-primary">
+      <h6>Add +</h6>
+    </a>
+    
+  </div>
+  <table class="table table-dark" style="border: 1px solid red;" id="dataTable">
+    <thead>
+      <tr>
+        <th scope="col" class="khmer-t">លេខរៀង</th> <!-- Serial Number -->
+        <th scope="col" class="khmer-t">ឈ្មោះ</th> <!-- Name -->
+        <th scope="col" class="khmer-t">សង្កាត់</th> <!-- Commune -->
+        <th scope="col" class="khmer-t">ភូមិ</th> <!-- Village -->
+        <!-- <th scope="col">Image</th> -->
+        <th scope="col" style="font-size: 15px;"><center>More</center></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in data %}
+      <tr class="tr-dash">
+        <td style="font-size: 15px;">{{ row[0] }}</td>
+        <td class="khmer-t">{{ row[1] }}</td>
+        <td style="font-size: 15px;">{{ row[2] }}</td>
+        <td style="font-size: 15px;">{{ row[3] }}</td>
+        <!-- <td class="khmer-t">{{ row[4] }}</td> -->
+        <!-- <td>
+          {% if row[5] %}
+            <img src="{{ url_for('static', filename='image/' ~ row[5]) }}" class="image-dash rounded-2" alt="Uploaded Image" style="width:40px;height:40px;">
+          {% else %}
+          No image
+          {% endif %}
+        </td> -->
+
+        <td style="margin: 0 auto; display: flex; justify-content: center;">
+          <a href="{{ url_for('detail', id=row[0]) }}" class="btn bg-primary" style="color: aliceblue; text-decoration: none; width: 15%; height: 100%;">View</a>
+          &emsp;
+          <form action="{{ url_for('delete', id=row[0]) }}" method="post" style="display:inline;">
+            <button type="submit" class="btn bg-danger text-white">Delete</button>
+          </form>
+          &emsp;
+          <a href="{{ url_for('edit', id=row[0]) }}" class="btn bg-primary">Edit</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <!-- <div class="my_btn" style="display: flex;">
+    <a href="{{ url_for('add') }}" class="btn m-2 pt-3 view bg-primary">
+      <h6>Add +</h6>
+    </a>
+    <form method="POST" action="{{ url_for('logout') }}">
+      <button type="submit" style="background-color: greenyellow;">Logout</button>
+  </form>
+  </div> -->
+</div>
+
+
+<script>
+  function searchTable() {
+      // Get the search input and convert it to lowercase
+      var input = document.getElementById('searchInput').value.toLowerCase();
+      
+      // Get the table and all its rows
+      var table = document.getElementById('dataTable');
+      var rows = table.getElementsByTagName('tr');
+      
+      // Loop through all table rows
+      for (var i = 1; i < rows.length; i++) { // Start at 1 to skip the header row
+          var cells = rows[i].getElementsByTagName('td');
+          var nameCell = cells[1]; // Assuming 'Name' is in the second column (index 1)
+          
+          if (nameCell) {
+              // Check if the name cell contains the search query
+              if (nameCell.textContent.toLowerCase().indexOf(input) > -1) {
+                  rows[i].style.display = ''; // Show the row
+              } else {
+                  rows[i].style.display = 'none'; // Hide the row
+              }
+          }
+      }
+  }
+</script>
+{% endblock %}

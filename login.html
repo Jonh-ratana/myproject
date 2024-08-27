@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+
+<div class="wrapper">
+    <div class="logo">
+        <!-- <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt=""> -->
+    </div>
+    <div class="box">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <div class="b">
+            <img src="https://1000logos.net/wp-content/uploads/2017/03/Linux-logo.jpg" alt="" width="100%" height="100%">
+
+                </div>
+            </div>
+    <div class="text-center mt-4 name">
+        Admin login
+        
+    </div><br>
+    <form method="POST" action="{{ url_for('login') }}"> 
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="text" id="username" name="username" placeholder="Username" required>
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="password" id="password" name="password" placeholder="password" required>
+        </div> 
+        <div class="bu d-flex" style="display: flex; justify-content: space-between;">
+            
+            <a href="{{ url_for('register') }}">Don't have an account? Register here</a><br>
+            <!-- <a href="{{ url_for('home') }}">Home</a> -->
+        </div>
+        <div class="bu d-flex w-50 m-auto">
+            <input type="submit" value="Login" class="btn mt-3 pt-2">
+        </div>
+        <br>
+        
+    </form>
+</div>
+{% endblock %}

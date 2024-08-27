@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="wrapper w-100">
+    <div class="logo">
+        <!-- <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt=""> -->
+    </div>
+    <!-- <div class="box">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <div class="b">
+            <img src="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/d664ddb1-a0c9-41cb-8ad7-53e323e5502d/e9df037a-8347-417b-af5c-0332420122df.png" alt="" width="100%" height="100%">
+
+                </div>
+            </div>
+    <div class="text-center mt-4 name">
+        Edit User
+    </div> -->
+    <form class="p-3 mt-3" method="post" action="{{ url_for('edit', id=data[0]) }}" enctype="multipart/form-data">
+        <!-- ID field (hidden) -->
+        <input type="hidden" name="id" value="{{ data[0] }}">
+
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="text" name="name" placeholder="Name" value="{{ data[1] }}" required>
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="text" name="community" placeholder="Community" value="{{ data[2] }}" required>
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="text" name="village" placeholder="Village" value="{{ data[3] }}" required>
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="text" name="discription" placeholder="Description" value="{{ data[4] }}" required>
+        </div>
+
+        <div class="d-flex align-items-center">
+            <input type="file" name="file" id="file">
+            <!-- Hidden field to keep track of the existing file path -->
+            <input type="hidden" name="existing_file_path" value="{{ data[5] }}">
+        </div>
+        <div class="bu d-flex">
+            <button class="btn mt-3 pt-2"><h6>Update</h6></button>
+            &emsp14;&emsp14;
+            <a href="{{ url_for('show') }}" class="btn mt-3 pt-2 view"><h6>View</h6></a>
+        </div>
+    </form>
+</div>
+{% endblock %}
